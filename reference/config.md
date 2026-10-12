@@ -16,7 +16,7 @@
 | `h1Accent` | 是 | 主标题后跟着色的一段（`·` 之后）。写主要片区。 |
 | `data` | 是 | 数据文件名，相对 `trip.json` 所在目录。 |
 | `output` | 否 | 输出文件名，默认 `index.html`。 |
-| `assetRoot` | 否 | 资源根目录，相对**输出 html 所在目录**。用来校验来源截图是否存在。默认 `.`。 |
+| `assetRoot` | 否 | 资源根目录，相对**输出 html 所在目录**。仅用于生成时检查来源图片存在性，默认 `.`；不会自动改写页面中的 `img` 路径。实际浏览器路径仍需与输出目录匹配。 |
 
 ```json
 "meta": {
@@ -65,7 +65,7 @@
 | 高德卫星 | `https://webst0{s}.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}` | GCJ-02 |
 | OSM（海外） | `https://tile.openstreetmap.org/{z}/{x}/{y}.png` | WGS-84 |
 
-> ⚠️ **坐标系必须匹配**。用 GCJ-02 的 POI 配 WGS-84 的瓦片，整张图会偏移几百米。国内优先高德；海外用 OSM——但 POI 数据源也要换成 Nominatim 之类，见 SKILL.md「地理范围」。
+> ⚠️ **坐标系必须匹配**。用 GCJ-02 的 POI 配 WGS-84 的瓦片，整张图会偏移几百米。国内优先高德；海外用 OSM——但 POI 数据源也要换成 Nominatim 之类，见 [坐标核验方法](geo-verification.md)；更换瓦片不代表程序会自动转换坐标。
 >
 > 高德瓦片的 `subdomains` 用 `["1","2","3","4"]`（对应 `webrd01`~`webrd04`）。
 
